@@ -1,0 +1,5 @@
+ @ this is a blocking function and it will block the thread for 3 seconds and after that it will 
+print the message but in this case all the functions will wait for each other and they will not run concurrently and after
+3 seconds only one will be ready and then the next one will start and wait for 3 seconds and then it will be ready and then the next one 
+will start and wait for 3 seconds and then it will be ready
+l
