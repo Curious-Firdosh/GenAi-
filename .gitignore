@@ -1,48 +1,100 @@
-# Python compiled files
+# =========================
+# ENV FILES
+# =========================
 
-**pycache**/
+.env
+.env.local
+
+# =========================
+# PYTHON CACHE
+# =========================
+
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Virtual environment
+# =========================
+# VIRTUAL ENV
+# =========================
 
 venv/
 env/
+ENV/
 .venv/
 
-# Distribution / packaging
+# =========================
+# LOG FILES
+# =========================
+
+*.log
+
+# =========================
+# IDE FILES
+# =========================
+
+.vscode/
+.idea/
+
+# =========================
+# OS FILES
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# TEST CACHE
+# =========================
+
+.pytest_cache/
+
+# =========================
+# JUPYTER
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+# BUILD FILES
+# =========================
 
 build/
 dist/
 *.egg-info/
-.eggs/
 
-# Logs
+# =========================
+# MYPY / TYPE CACHE
+# =========================
 
-*.log
+.mypy_cache/
 
-# Environment variables
+# =========================
+# AI / MODEL FILES
+# =========================
 
-.env
-.env.*
+models/
+checkpoints/
+*.pt
+*.pth
 
-# Jupyter Notebook checkpoints
+# =========================
+# SQLITE DATABASES
+# =========================
 
-.ipynb_checkpoints/
+*.sqlite3
+*.db
 
-# VS Code settings
+# =========================
+# TEMP FILES
+# =========================
 
-.vscode/
+temp/
+tmp/
 
-# PyCharm settings
+# =========================
+# SECRET FILES
+# =========================
 
-.idea/
-
-# Mac system files
-
-.DS_Store
-
-# Windows system files
-
-Thumbs.db
+secrets.json
+config.local.json
