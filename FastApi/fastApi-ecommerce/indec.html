@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: ShopMind AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --peak: #ff3838;       /* Brilliant Red */
+            --high: #ff9f1a;       /* Deep Orange */
+            --medium: #fbc531;     /* Golden Yellow */
+            --low: #00a8ff;        /* Bright Blue */
+            --very-low: #4cd137;   /* Vibrant Green */
+            --sleep: #8c7ae6;      /* Deep Purple */
+            --bg: #000000;
+            --text-main: #ffffff;
+            --text-sub: #a4b0be;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .dashboard {
+            width: 90%;
+            max-width: 1400px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .header {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .highlight-title {
+            color: var(--peak);
+        }
+        .energy-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 50px;
+            width: max-content;
+            margin: 0 auto;
+        }
+        .legend-item span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 20px;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+        /* The vertical line */
+        .column::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+        .task-card {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px 20px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.2s;
+        }
+        .task-card:hover {
+            background: rgba(40, 40, 40, 0.8);
+        }
+        .node {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px currentColor;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        .time {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+        .task-name {
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        .action {
+            color: var(--text-sub);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="header">
+            <h1>Day 1: <span class="highlight-title">ShopMind AI</span></h1>
+            <div class="energy-legend">
+                <div class="legend-item"><span style="background: var(--peak);"></span>Peak (Dopamine Spike)</div>
+                <div class="legend-item"><span style="background: var(--high);"></span>High</div>
+                <div class="legend-item"><span style="background: var(--medium);"></span>Medium</div>
+                <div class="legend-item"><span style="background: var(--low);"></span>Low</div>
+                <div class="legend-item"><span style="background: var(--very-low);"></span>Rest / Recovery</div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="column">
+                
+                <div class="task-card">
+                    <div class="node" style="color: var(--low); background: var(--low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--low);">Warm-up</span>
+                            <span class="time">6:30 – 7:00 AM</span>
+                        </div>
+                        <span class="action">Wake up + freshen up (No phone)</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--high); background: var(--high);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--high);">Exercise</span>
+                            <span class="time">7:00 – 7:45 AM</span>
+                        </div>
+                        <span class="action">Workout + fresh mind</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--high); background: var(--high);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--high);">Prep for Deep Work</span>
+                            <span class="time">7:45 – 8:30 AM</span>
+                        </div>
+                        <span class="action">Bath + Breakfast</span>
+                    </div>
+                </div>
+
+                <div class="task-card" style="border-left: 4px solid var(--peak);">
+                    <div class="node" style="color: var(--peak); background: var(--peak);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--peak);">ShopMind AI Revision</span>
+                            <span class="time">8:30 – 11:30 AM</span>
+                        </div>
+                        <span class="action">Run & understand complete existing project</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--medium); background: var(--medium);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--medium);">Break</span>
+                            <span class="time">11:30 – 12:00 PM</span>
+                        </div>
+                        <span class="action">Walk / Rest away from screen</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--high); background: var(--high);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--high);">Project Planning</span>
+                            <span class="time">12:00 – 1:30 PM</span>
+                        </div>
+                        <span class="action">Write completed, remaining, and Sept 10 tasks</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--low); background: var(--low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--low);">Lunch + Rest</span>
+                            <span class="time">1:30 – 2:30 PM</span>
+                        </div>
+                        <span class="action">Proper break, recharge</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--medium); background: var(--medium);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--medium);">AI Engineering</span>
+                            <span class="time">2:30 – 4:30 PM</span>
+                        </div>
+                        <span class="action">Learn ONLY what you will implement</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="column">
+                
+                <div class="task-card">
+                    <div class="node" style="color: var(--low); background: var(--low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--low);">Break</span>
+                            <span class="time">4:30 – 5:00 PM</span>
+                        </div>
+                        <span class="action">Relax mind</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--medium); background: var(--medium);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--medium);">DSA Practice</span>
+                            <span class="time">5:00 – 6:00 PM</span>
+                        </div>
+                        <span class="action">2 problems, exactly 1 pattern</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--low); background: var(--low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--low);">Interview Prep</span>
+                            <span class="time">6:00 – 7:00 PM</span>
+                        </div>
+                        <span class="action">Prepare ShopMind AI answers</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--medium); background: var(--medium);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--medium);">Dinner + Rest</span>
+                            <span class="time">7:00 – 8:00 PM</span>
+                        </div>
+                        <span class="action">Recharge energy</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--low); background: var(--low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--low);">Comm. Practice</span>
+                            <span class="time">8:00 – 9:00 PM</span>
+                        </div>
+                        <span class="action">Speak / record project explanation</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--very-low); background: var(--very-low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--very-low);">Relaxation</span>
+                            <span class="time">9:00 – 10:00 PM</span>
+                        </div>
+                        <span class="action">No heavy work. Prepare for tomorrow</span>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="node" style="color: var(--very-low); background: var(--very-low);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--very-low);">Leisure Time</span>
+                            <span class="time">10:00 – 12:00 AM</span>
+                        </div>
+                        <span class="action">Personal time to unwind</span>
+                    </div>
+                </div>
+
+                <div class="task-card" style="border-left: 4px solid var(--sleep);">
+                    <div class="node" style="color: var(--sleep); background: var(--sleep);"></div>
+                    <div class="content">
+                        <div class="top-row">
+                            <span class="task-name" style="color: var(--sleep);">Sleep</span>
+                            <span class="time">12:00 AM</span>
+                        </div>
+                        <span class="action">Sleep immediately</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
